@@ -16,34 +16,26 @@ export const getGreetings = createAsyncThunk('greetings/fetchMessages', async ()
   return data;
 });
 
-
 const greetingsSlice = createSlice({
   name: 'greetings',
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(getGreetings.pending, (state) => {
-      return {
-        ...state,
-        loading: true,
-      };
-    });
-    
-    builder.addCase(getGreetings.fulfilled, (state, action) => {
-      return {
-        ...state,
-        loading: false,
-        greetings: { text: action.payload.text },
-        error: '',
-      };
-    });    
-    builder.addCase(getGreetings.rejected, (state, action) => {
-      return {
-        ...state,
-        loading: false,
-        greetings: [],
-        error: action.error.message,
-      };
-    });    
+    builder.addCase(getGreetings.pending, (state) => ({
+      ...state,
+      loading: true,
+    }));
+    builder.addCase(getGreetings.fulfilled, (state, action) => ({
+      ...state,
+      loading: false,
+      greetings: { text: action.payload.text },
+      error: '',
+    }));
+    builder.addCase(getGreetings.rejected, (state, action) => ({
+      ...state,
+      loading: false,
+      greetings: [],
+      error: action.error.message,
+    }));
   },
 });
 

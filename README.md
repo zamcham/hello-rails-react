@@ -41,6 +41,9 @@ Get a random greeting/message when opening the app.
   <ul>
     <li><a href="https://www.postgresql.org/">Rails</a></li>
   </ul>
+    <ul>
+    <li><a href="https://www.postgresql.org/">Postgresql</a></li>
+  </ul>
   <summary>FrontEnd</summary>
   <ul>
     <li><a href="https://es.react.dev/">React</a></li>
@@ -69,7 +72,7 @@ In order to run this project you need:
 
 ```sh
   cd my-folder
-  git clone https://github.com/smunoz1988/hello-react-on-rails.git
+  git clone https://github.com/zamcham/hello-rails-react.git
 ```
 
 ### Install

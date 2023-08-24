@@ -1,0 +1,5 @@
+Greetin1 = Greeting.create(text: 'Hello')
+Greetin2 = Greeting.create(text: 'Salut')
+Greetin3 = Greeting.create(text: 'Guten Tag')
+Greetin4 = Greeting.create(text: 'Konnichi Ha')
+Greetin5 = Greeting.create(text: 'As-salam')

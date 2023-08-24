@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
 const initialState = {
   greetings: [],
   loading: false,
@@ -7,9 +8,14 @@ const initialState = {
 const url = 'http://localhost:3000/api/greetings';
 
 export const getGreetings = createAsyncThunk('greetings/fetchMessages', async () => {
-  const response = await fetch(`${url}`);
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(`${url}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Fetch Error:', error);
+    throw error; // Rethrow the error to trigger the rejection
+  }
 });
 
 const greetingsSlice = createSlice({
@@ -23,7 +29,7 @@ const greetingsSlice = createSlice({
       state.loading = false;
       state.greetings = { text: action.payload.text };
       state.error = '';
-    });    
+    });
     builder.addCase(getGreetings.rejected, (state, action) => {
       state.loading = false;
       state.greetings = [];

@@ -4,8 +4,8 @@ import { getGreetings } from '../greetingSlice';
 
 const Greeting = () => {
   const dispatch = useDispatch();
-  const greetingContent = useSelector((state) => state.greetings.text);
-  console.log(greetingContent.text);
+  const greetingContent = useSelector((state) => state.greetings.greetings.text);
+  console.log(greetingContent);
 
   useEffect(() => {
     dispatch(getGreetings());
@@ -13,10 +13,11 @@ const Greeting = () => {
 
   return (
     <div>
-      <h1>A new message will appear every time you refresh!</h1>
-      <h3>{greetingContent.text}</h3>
+      <h1>Get a greeting in a different language!</h1>
+      <h1>All you have to do, is refresh the page</h1>
+      <h4>{greetingContent}</h4>
     </div>
   );
 };
 
-export default Greeting
+export default Greeting;

@@ -8,33 +8,42 @@ const initialState = {
 const url = 'http://localhost:3000/api/greetings';
 
 export const getGreetings = createAsyncThunk('greetings/fetchMessages', async () => {
-  try {
-    const response = await fetch(`${url}`);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Fetch Error:', error);
-    throw error; // Rethrow the error to trigger the rejection
+  const response = await fetch(`${url}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch greetings');
   }
+  const data = await response.json();
+  return data;
 });
+
 
 const greetingsSlice = createSlice({
   name: 'greetings',
   initialState,
   extraReducers: (builder) => {
     builder.addCase(getGreetings.pending, (state) => {
-      state.loading = true;
+      return {
+        ...state,
+        loading: true,
+      };
     });
+    
     builder.addCase(getGreetings.fulfilled, (state, action) => {
-      state.loading = false;
-      state.greetings = { text: action.payload.text };
-      state.error = '';
-    });
+      return {
+        ...state,
+        loading: false,
+        greetings: { text: action.payload.text },
+        error: '',
+      };
+    });    
     builder.addCase(getGreetings.rejected, (state, action) => {
-      state.loading = false;
-      state.greetings = [];
-      state.error = action.error.message;
-    });
+      return {
+        ...state,
+        loading: false,
+        greetings: [],
+        error: action.error.message,
+      };
+    });    
   },
 });
 

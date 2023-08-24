@@ -5,7 +5,6 @@ import { getGreetings } from '../greetingSlice';
 const Greeting = () => {
   const dispatch = useDispatch();
   const greetingContent = useSelector((state) => state.greetings.greetings.text);
-  console.log(greetingContent);
 
   useEffect(() => {
     dispatch(getGreetings());

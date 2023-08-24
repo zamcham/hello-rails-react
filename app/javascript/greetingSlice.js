@@ -4,7 +4,7 @@ const initialState = {
   loading: false,
   error: '',
 };
-const url = 'http://localhost:3000/api/v1/greetings';
+const url = 'http://localhost:3000/api/greetings';
 
 export const getGreetings = createAsyncThunk('greetings/fetchMessages', async () => {
   const response = await fetch(`${url}`);
@@ -21,9 +21,9 @@ const greetingsSlice = createSlice({
     });
     builder.addCase(getGreetings.fulfilled, (state, action) => {
       state.loading = false;
-      state.greetings = action.payload;
+      state.greetings = { text: action.payload.text };
       state.error = '';
-    });
+    });    
     builder.addCase(getGreetings.rejected, (state, action) => {
       state.loading = false;
       state.greetings = [];

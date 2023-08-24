@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMessages } from '../redux/messagesSlice';
+import { getGreetings } from '../greetingSlice';
 
 const Greeting = () => {
   const dispatch = useDispatch();
-  const greetingsData = useSelector((state) => state.messages);
-  console.log(greetingsData);
+  const greetingContent = useSelector((state) => state.messages);
+  console.log(greetingContent.messages.text);
 
   useEffect(() => {
-    dispatch(getMessages());
+    dispatch(getGreetings());
   }, [dispatch]);
 
   return (
     <div>
-      <h2>Refresh to get a new Greeting</h2>
-      <p>{greetingsData.messages.content}</p>
+      <h1>A new message will appear every time you refresh!</h1>
+      <h3>{greetingContent.messages.text}</h3>
     </div>
   );
 };

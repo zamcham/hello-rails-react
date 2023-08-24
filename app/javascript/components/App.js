@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom';
-import Message from './Message';
+import Greeting from './Greeting';
 
 const App = () => {
   return (
     <React.StrictMode>
       <Routes>
-        <Route path="/" element={<Message />} />
+        <Route path="/" element={<Greeting />} />
       </Routes>
     </React.StrictMode>
   )
